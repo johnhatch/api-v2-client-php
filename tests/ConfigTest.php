@@ -13,6 +13,6 @@ class ConfigTest extends TestCase
     public function testCanCreateConfig()
     {
         $config = new Config();
-        $this->assertContains('gpsinsight', $config['endpoint']);
+        $this->assertStringContainsStringIgnoringCase('gpsinsight', $config['endpoint']);
     }
 }

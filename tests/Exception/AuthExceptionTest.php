@@ -19,7 +19,7 @@ class AuthExceptionTest extends TestCase
     {
         $ex = call_user_func([AuthException::class, $method]);
         foreach ($words as $word) {
-            $this->assertContains($word, $ex->getMessage());
+            $this->assertStringContainsStringIgnoringCase($word, $ex->getMessage());
         }
     }
 

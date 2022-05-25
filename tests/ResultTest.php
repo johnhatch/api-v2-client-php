@@ -39,8 +39,8 @@ class ResultTest extends TestCase
         var_dump($result);
         $dump = ob_get_clean();
 
-        $this->assertContains('head', $dump);
-        $this->assertContains('data', $dump);
-        $this->assertContains('errors', $dump);
+        $this->assertStringContainsStringIgnoringCase('head', $dump);
+        $this->assertStringContainsStringIgnoringCase('data', $dump);
+        $this->assertStringContainsStringIgnoringCase('errors', $dump);
     }
 }

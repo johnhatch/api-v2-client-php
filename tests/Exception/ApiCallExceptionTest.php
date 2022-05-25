@@ -39,7 +39,7 @@ class ApiCallExceptionTest extends TestCase
 
         $exception = ApiCallException::resultNotOk($command, $result, $request, $response);
         $this->assertInstanceOf($exceptionClass, $exception);
-        $this->assertRegExp('#' . preg_quote($exceptionMessage, '#') . '#', $exception->getMessage());
+        $this->assertMatchesRegularExpression('#' . preg_quote($exceptionMessage, '#') . '#', $exception->getMessage());
         $this->assertInstanceOf(Result::class, $exception->getResult());
         $this->assertCount($errorCount, $exception->getResult()->getErrors());
     }
@@ -76,8 +76,8 @@ class ApiCallExceptionTest extends TestCase
         $exception = ApiCallException::callFailed($command, $previous);
         $message = $exception->getMessage();
         $this->assertInstanceOf(ApiCallException::class, $exception);
-        $this->assertContains('foo/bar', $message);
-        $this->assertContains('baz', $message);
+        $this->assertStringContainsStringIgnoringCase('foo/bar', $message);
+        $this->assertStringContainsStringIgnoringCase('baz', $message);
     }
 
     public function testDoesNothingIfExceptionSameType()

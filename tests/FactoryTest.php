@@ -35,7 +35,7 @@ class FactoryTest extends TestCase
         $this->assertTrue($handlerStack->hasHandler());
 
         $debug = (string) $handlerStack;
-        $this->assertContains(WireLog::MIDDLEWARE_NAME, $debug);
+        $this->assertStringContainsStringIgnoringCase(WireLog::MIDDLEWARE_NAME, $debug);
     }
 
     /**
@@ -79,8 +79,8 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(Client::class, $client);
 
         $stackDebug = (string) $client->getHandlerStack();
-        $this->assertContains(AuthMiddleware::MIDDLEWARE_NAME, $stackDebug);
-        $this->assertContains(ChannelMiddleware::MIDDLEWARE_NAME, $stackDebug);
+        $this->assertStringContainsStringIgnoringCase(AuthMiddleware::MIDDLEWARE_NAME, $stackDebug);
+        $this->assertStringContainsStringIgnoringCase(ChannelMiddleware::MIDDLEWARE_NAME, $stackDebug);
     }
 
     /**

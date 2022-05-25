@@ -12,7 +12,7 @@ class WireLogTest extends TestCase
 {
     public function testThrowExceptionOnNonStream()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        $this->expectException('InvalidArgumentException');
         new WireLog('foo');
     }
 

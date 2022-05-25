@@ -53,7 +53,7 @@ class ClientTest extends TestCase
         }
 
         $this->assertInstanceOf(ApiCallException::class, $ex);
-        $this->assertContains('bad connection', $ex->getMessage());
+        $this->assertStringContainsStringIgnoringCase('bad connection', $ex->getMessage());
     }
 
     public function testBadResultsAreThrownAsGpsException()
@@ -103,6 +103,6 @@ class ClientTest extends TestCase
         $exception = $promise->wait();
 
         $this->assertInstanceOf(ApiCallException::class, $exception);
-        $this->assertContains('bad connection', $exception->getMessage());
+        $this->assertStringContainsStringIgnoringCase('bad connection', $exception->getMessage());
     }
 }

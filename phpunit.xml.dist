@@ -19,17 +19,19 @@
             <file>tests/SmokeTest.php</file>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
+    <coverage processUncoveredFiles="true">
+        <include>
             <directory suffix=".php">src/</directory>
-            <exclude>
-                <directory suffix=".php">src/Service/</directory>
-            </exclude>
-        </whitelist>
-    </filter>
+        </include>
+        <exclude>
+            <directory suffix=".php">src/Service/</directory>
+        </exclude>
+        <report>
+            <clover outputFile="build/logs/clover.xml"/>
+        </report>
+    </coverage>
     <logging>
-        <log type="coverage-html" target="build/coverage" charset="UTF-8" yui="true" highlight="true"/>
-        <log type="coverage-text" target="build/coverage.txt"/>
-        <log type="coverage-clover" target="build/logs/clover.xml"/>
+        <testdoxHtml outputFile="build/coverage/coverage.html"/>
+        <text outputFile="build/coverage.txt"/>
     </logging>
 </phpunit>
