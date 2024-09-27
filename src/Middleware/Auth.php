@@ -75,7 +75,7 @@ class Auth
 
     private function executeLoginCommand(CommandInterface $command)
     {
-        return Promise\coroutine(function () use ($command) {
+        return Promise\Coroutine::of(function () use ($command) {
             // Login operation requires username.
             if (!$this->hasCredential($command, Config::USERNAME)) {
                 throw AuthException::usernameRequired();
@@ -103,7 +103,7 @@ class Auth
 
     private function executeAuthenticatedCommand(CommandInterface $command)
     {
-        return Promise\coroutine(function () use ($command) {
+        return Promise\Coroutine::of(function () use ($command) {
             // Login operation requires username.
             if (!$this->hasCredential($command, Config::USERNAME)) {
                 throw AuthException::usernameRequired();
@@ -131,10 +131,10 @@ class Auth
 
     private function getSessionToken($refresh = false)
     {
-        return Promise\coroutine(function () use ($refresh) {
+        return Promise\Coroutine::of(function () use ($refresh) {
             $token = $this->tokenCache->getToken($this->getCacheKey());
             if ($token && !$refresh) {
-                yield Promise\promise_for($token);
+                yield Promise\Create::promiseFor($token);
             } else {
                 $result = (yield $this(new Command(self::LOGIN_OPERATION)));
                 if (!$result['token']) {
